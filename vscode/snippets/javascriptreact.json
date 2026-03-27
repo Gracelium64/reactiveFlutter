@@ -1,0 +1,403 @@
+{
+  "Div": {
+    "prefix": ["Div", "div"],
+    "body": ["<div className=\"$1\">$2</div>$0"],
+    "description": "React div"
+  },
+  "Section": {
+    "prefix": ["Section", "sec"],
+    "body": ["<section className=\"$1\">$2</section>$0"],
+    "description": "React section"
+  },
+  "Main": {
+    "prefix": ["Main", "main"],
+    "body": ["<main className=\"$1\">$2</main>$0"],
+    "description": "React main"
+  },
+  "Header": {
+    "prefix": ["Header", "hdr"],
+    "body": ["<header className=\"$1\">$2</header>$0"],
+    "description": "React header"
+  },
+  "Footer": {
+    "prefix": ["Footer", "ftr"],
+    "body": ["<footer className=\"$1\">$2</footer>$0"],
+    "description": "React footer"
+  },
+  "Nav": {
+    "prefix": ["Nav", "nav"],
+    "body": ["<nav aria-label=\"$1\" className=\"$2\">$3</nav>$0"],
+    "description": "React nav"
+  },
+  "Aside": {
+    "prefix": ["Aside", "asd"],
+    "body": ["<aside className=\"$1\">$2</aside>$0"],
+    "description": "React aside"
+  },
+  "Article": {
+    "prefix": ["Article", "art"],
+    "body": ["<article className=\"$1\">$2</article>$0"],
+    "description": "React article"
+  },
+  "Address": {
+    "prefix": ["Address", "addr"],
+    "body": ["<address className=\"$1\">$2</address>$0"],
+    "description": "React address"
+  },
+  "Figure": {
+    "prefix": ["Figure", "fig"],
+    "body": ["<figure className=\"$1\">$2</figure>$0"],
+    "description": "React figure"
+  },
+  "Figcaption": {
+    "prefix": ["Figcaption", "figc"],
+    "body": ["<figcaption className=\"$1\">$2</figcaption>$0"],
+    "description": "React figcaption"
+  },
+  "Anchor": {
+    "prefix": ["Anchor", "a"],
+    "body": [
+      "<a href=\"$1\" target=\"$2\" rel=\"$3\" className=\"$4\">$5</a>$0"
+    ],
+    "description": "React anchor"
+  },
+  "H1": {
+    "prefix": ["H1", "h1"],
+    "body": ["<h1 className=\"$1\">$2</h1>$0"],
+    "description": "React h1"
+  },
+  "H2": {
+    "prefix": ["H2", "h2"],
+    "body": ["<h2 className=\"$1\">$2</h2>$0"],
+    "description": "React h2"
+  },
+  "H3": {
+    "prefix": ["H3", "h3"],
+    "body": ["<h3 className=\"$1\">$2</h3>$0"],
+    "description": "React h3"
+  },
+  "H4": {
+    "prefix": ["H4", "h4"],
+    "body": ["<h4 className=\"$1\">$2</h4>$0"],
+    "description": "React h4"
+  },
+  "H5": {
+    "prefix": ["H5", "h5"],
+    "body": ["<h5 className=\"$1\">$2</h5>$0"],
+    "description": "React h5"
+  },
+  "H6": {
+    "prefix": ["H6", "h6"],
+    "body": ["<h6 className=\"$1\">$2</h6>$0"],
+    "description": "React h6"
+  },
+  "Paragraph": {
+    "prefix": ["Paragraph", "p"],
+    "body": ["<p className=\"$1\">$2</p>$0"],
+    "description": "React paragraph"
+  },
+  "Span": {
+    "prefix": ["Span", "span"],
+    "body": ["<span className=\"$1\">$2</span>$0"],
+    "description": "React span"
+  },
+  "Strong": {
+    "prefix": ["Strong", "strong"],
+    "body": ["<strong className=\"$1\">$2</strong>$0"],
+    "description": "React strong"
+  },
+  "Em": {
+    "prefix": ["Em", "em"],
+    "body": ["<em className=\"$1\">$2</em>$0"],
+    "description": "React em"
+  },
+  "Small": {
+    "prefix": ["Small", "small"],
+    "body": ["<small className=\"$1\">$2</small>$0"],
+    "description": "React small"
+  },
+  "Mark": {
+    "prefix": ["Mark", "mark"],
+    "body": ["<mark className=\"$1\">$2</mark>$0"],
+    "description": "React mark"
+  },
+  "Blockquote": {
+    "prefix": ["Blockquote", "bq"],
+    "body": ["<blockquote cite=\"$1\" className=\"$2\">$3</blockquote>$0"],
+    "description": "React blockquote"
+  },
+  "Pre": {
+    "prefix": ["Pre", "pre"],
+    "body": ["<pre className=\"$1\"><code>$2</code></pre>$0"],
+    "description": "React preformatted block"
+  },
+  "Code": {
+    "prefix": ["Code", "code"],
+    "body": ["<code className=\"$1\">$2</code>$0"],
+    "description": "React code"
+  },
+  "Sup": {
+    "prefix": ["Sup", "sup"],
+    "body": ["<sup className=\"$1\">$2</sup>$0"],
+    "description": "React superscript"
+  },
+  "Sub": {
+    "prefix": ["Sub", "sub"],
+    "body": ["<sub className=\"$1\">$2</sub>$0"],
+    "description": "React subscript"
+  },
+  "Time": {
+    "prefix": ["Time", "time"],
+    "body": ["<time dateTime=\"$1\" className=\"$2\">$3</time>$0"],
+    "description": "React time"
+  },
+  "Image": {
+    "prefix": ["Image", "img"],
+    "body": ["<img src=\"$1\" alt=\"$2\" className=\"$3\" loading=\"$4\" />$0"],
+    "description": "React image"
+  },
+  "Picture": {
+    "prefix": ["Picture", "pic"],
+    "body": ["<picture className=\"$1\">", "  $2", "</picture>$0"],
+    "description": "React picture"
+  },
+  "Source": {
+    "prefix": ["Source", "src"],
+    "body": ["<source srcSet=\"$1\" media=\"$2\" type=\"$3\" />$0"],
+    "description": "React source"
+  },
+  "Video": {
+    "prefix": ["Video", "video"],
+    "body": [
+      "<video src=\"$1\" controls={${2:true}} className=\"$3\">$4</video>$0"
+    ],
+    "description": "React video"
+  },
+  "Audio": {
+    "prefix": ["Audio", "audio"],
+    "body": [
+      "<audio src=\"$1\" controls={${2:true}} className=\"$3\">$4</audio>$0"
+    ],
+    "description": "React audio"
+  },
+  "Track": {
+    "prefix": ["Track", "track"],
+    "body": ["<track kind=\"$1\" src=\"$2\" srcLang=\"$3\" label=\"$4\" />$0"],
+    "description": "React track"
+  },
+  "Canvas": {
+    "prefix": ["Canvas", "canvas"],
+    "body": [
+      "<canvas width={${1:300}} height={${2:150}} className=\"$3\">$4</canvas>$0"
+    ],
+    "description": "React canvas"
+  },
+  "Svg": {
+    "prefix": ["Svg", "svg"],
+    "body": ["<svg viewBox=\"$1\" className=\"$2\">$3</svg>$0"],
+    "description": "React svg"
+  },
+  "Iframe": {
+    "prefix": ["Iframe", "ifr"],
+    "body": ["<iframe src=\"$1\" title=\"$2\" className=\"$3\">$4</iframe>$0"],
+    "description": "React iframe"
+  },
+  "UnorderedList": {
+    "prefix": ["UnorderedList", "ul"],
+    "body": ["<ul className=\"$1\">", "  <li>$2</li>", "</ul>$0"],
+    "description": "React unordered list"
+  },
+  "OrderedList": {
+    "prefix": ["OrderedList", "ol"],
+    "body": ["<ol className=\"$1\">", "  <li>$2</li>", "</ol>$0"],
+    "description": "React ordered list"
+  },
+  "ListItem": {
+    "prefix": ["ListItem", "li"],
+    "body": ["<li className=\"$1\">$2</li>$0"],
+    "description": "React list item"
+  },
+  "DescriptionList": {
+    "prefix": ["DescriptionList", "dl"],
+    "body": ["<dl className=\"$1\">$2</dl>$0"],
+    "description": "React description list"
+  },
+  "DefinitionTerm": {
+    "prefix": ["DefinitionTerm", "dt"],
+    "body": ["<dt className=\"$1\">$2</dt>$0"],
+    "description": "React definition term"
+  },
+  "DefinitionDescription": {
+    "prefix": ["DefinitionDescription", "dd"],
+    "body": ["<dd className=\"$1\">$2</dd>$0"],
+    "description": "React definition description"
+  },
+  "Table": {
+    "prefix": ["Table", "table"],
+    "body": ["<table className=\"$1\">", "  $2", "</table>$0"],
+    "description": "React table"
+  },
+  "Thead": {
+    "prefix": ["Thead", "thead"],
+    "body": ["<thead>$1</thead>$0"],
+    "description": "React thead"
+  },
+  "Tbody": {
+    "prefix": ["Tbody", "tbody"],
+    "body": ["<tbody>$1</tbody>$0"],
+    "description": "React tbody"
+  },
+  "Tfoot": {
+    "prefix": ["Tfoot", "tfoot"],
+    "body": ["<tfoot>$1</tfoot>$0"],
+    "description": "React tfoot"
+  },
+  "TableRow": {
+    "prefix": ["TableRow", "tr"],
+    "body": ["<tr>$1</tr>$0"],
+    "description": "React table row"
+  },
+  "TableHeader": {
+    "prefix": ["TableHeader", "th"],
+    "body": ["<th scope=\"$1\" className=\"$2\">$3</th>$0"],
+    "description": "React table header cell"
+  },
+  "TableCell": {
+    "prefix": ["TableCell", "td"],
+    "body": ["<td className=\"$1\">$2</td>$0"],
+    "description": "React table cell"
+  },
+  "Caption": {
+    "prefix": ["Caption", "cap"],
+    "body": ["<caption className=\"$1\">$2</caption>$0"],
+    "description": "React caption"
+  },
+  "Colgroup": {
+    "prefix": ["Colgroup", "colg"],
+    "body": ["<colgroup>$1</colgroup>$0"],
+    "description": "React colgroup"
+  },
+  "Col": {
+    "prefix": ["Col", "col"],
+    "body": ["<col span={${1:1}} />$0"],
+    "description": "React col"
+  },
+  "Form": {
+    "prefix": ["Form", "form"],
+    "body": ["<form onSubmit={$1} className=\"$2\">$3</form>$0"],
+    "description": "React form"
+  },
+  "Label": {
+    "prefix": ["Label", "lbl"],
+    "body": ["<label htmlFor=\"$1\" className=\"$2\">$3</label>$0"],
+    "description": "React label"
+  },
+  "Input": {
+    "prefix": ["Input", "input"],
+    "body": [
+      "<input type=\"$1\" name=\"$2\" id=\"$3\" value={$4} onChange={$5} className=\"$6\" />$0"
+    ],
+    "description": "React input"
+  },
+  "Textarea": {
+    "prefix": ["Textarea", "ta"],
+    "body": [
+      "<textarea name=\"$1\" id=\"$2\" rows={${3:4}} className=\"$4\">$5</textarea>$0"
+    ],
+    "description": "React textarea"
+  },
+  "Select": {
+    "prefix": ["Select", "sel"],
+    "body": [
+      "<select name=\"$1\" id=\"$2\" value={$3} onChange={$4} className=\"$5\">",
+      "  <option value=\"\">$6</option>",
+      "</select>$0"
+    ],
+    "description": "React select"
+  },
+  "Option": {
+    "prefix": ["Option", "opt"],
+    "body": ["<option value=\"$1\">$2</option>$0"],
+    "description": "React option"
+  },
+  "Optgroup": {
+    "prefix": ["Optgroup", "optg"],
+    "body": ["<optgroup label=\"$1\">$2</optgroup>$0"],
+    "description": "React optgroup"
+  },
+  "Button": {
+    "prefix": ["Button", "btn"],
+    "body": ["<button type=\"$1\" onClick={$2} className=\"$3\">$4</button>$0"],
+    "description": "React button"
+  },
+  "Fieldset": {
+    "prefix": ["Fieldset", "fs"],
+    "body": ["<fieldset className=\"$1\">$2</fieldset>$0"],
+    "description": "React fieldset"
+  },
+  "Legend": {
+    "prefix": ["Legend", "leg"],
+    "body": ["<legend className=\"$1\">$2</legend>$0"],
+    "description": "React legend"
+  },
+  "Datalist": {
+    "prefix": ["Datalist", "dlist"],
+    "body": ["<datalist id=\"$1\">$2</datalist>$0"],
+    "description": "React datalist"
+  },
+  "Output": {
+    "prefix": ["Output", "out"],
+    "body": ["<output htmlFor=\"$1\" className=\"$2\">$3</output>$0"],
+    "description": "React output"
+  },
+  "Progress": {
+    "prefix": ["Progress", "prog"],
+    "body": ["<progress value={${1:0}} max={${2:100}}>$3</progress>$0"],
+    "description": "React progress"
+  },
+  "Meter": {
+    "prefix": ["Meter", "meter"],
+    "body": ["<meter value={${1:0}} min={${2:0}} max={${3:100}}>$4</meter>$0"],
+    "description": "React meter"
+  },
+  "Details": {
+    "prefix": ["Details", "det"],
+    "body": ["<details open={${1:false}} className=\"$2\">$3</details>$0"],
+    "description": "React details"
+  },
+  "Summary": {
+    "prefix": ["Summary", "sum"],
+    "body": ["<summary className=\"$1\">$2</summary>$0"],
+    "description": "React summary"
+  },
+  "Dialog": {
+    "prefix": ["Dialog", "dlg"],
+    "body": ["<dialog open={${1:false}} className=\"$2\">$3</dialog>$0"],
+    "description": "React dialog"
+  },
+  "Menu": {
+    "prefix": ["Menu", "menu"],
+    "body": ["<menu className=\"$1\">$2</menu>$0"],
+    "description": "React menu"
+  },
+  "Template": {
+    "prefix": ["Template", "tmpl"],
+    "body": ["<template id=\"$1\">$2</template>$0"],
+    "description": "React template"
+  },
+  "Hr": {
+    "prefix": ["Hr", "hr"],
+    "body": ["<hr className=\"$1\" />$0"],
+    "description": "React horizontal rule"
+  },
+  "Br": {
+    "prefix": ["Br", "br"],
+    "body": ["<br />$0"],
+    "description": "React line break"
+  },
+  "Noscript": {
+    "prefix": ["Noscript", "nos"],
+    "body": ["<noscript>$1</noscript>$0"],
+    "description": "React noscript"
+  }
+}
