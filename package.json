@@ -1,6 +1,6 @@
 {
   "name": "reactiveflutter",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Reusable VS Code React JSX/TSX snippets with safe bootstrap installer for macOS.",
   "keywords": [
     "vscode",
