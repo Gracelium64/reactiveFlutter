@@ -7,12 +7,40 @@ This repository provides a reusable, version-controlled VS Code snippet setup fo
 - Double-quote attribute placeholders by default.
 - Broad HTML tag coverage for React work.
 
+## Install As npm Package
+
+### Global Install (Recommended)
+
+1. Install:
+
+   npm install -g reactiveflutter
+
+2. Run installer (safe default, snippets only):
+
+   vscode-react-snippets --mode copy
+
+3. Optional: include managed VS Code settings:
+
+   vscode-react-snippets --mode copy --include-settings
+
+### Local Project Install
+
+If you install locally (`npm install reactiveflutter` without `-g`), use npx to run it:
+
+npx vscode-react-snippets --mode copy
+
+Or with optional settings:
+
+npx vscode-react-snippets --mode copy --include-settings
+
 ## Repository Layout
 
 - `vscode/settings.json` - Optional VS Code user settings overrides (snippet ranking and snippet acceptance behavior).
 - `vscode/snippets/javascriptreact.json` - Global React JSX snippets.
 - `vscode/snippets/typescriptreact.json` - TSX parity snippets.
 - `scripts/bootstrap-vscode.sh` - Safe and idempotent macOS bootstrap script.
+- `bin/vscode-react-snippets.js` - npm CLI entrypoint.
+- `package.json` - npm package metadata and commands.
 
 ## Initial Install (macOS)
 
@@ -24,6 +52,11 @@ This repository provides a reusable, version-controlled VS Code snippet setup fo
 3. Optional: apply managed VS Code settings too:
 
    ./scripts/bootstrap-vscode.sh --mode copy --include-settings
+
+Using npm script shortcuts:
+
+- npm run bootstrap
+- npm run bootstrap:with-settings
 
 Default destination paths:
 
@@ -101,3 +134,22 @@ VSCODE_USER_DIR="$HOME/Library/Application Support/Code - Insiders/User" ./scrip
 - Snippets target `javascriptreact` and `typescriptreact` globally via VS Code User snippet files.
 - Attributes use double quotes for placeholder defaults.
 - Bootstrap does not overwrite user settings unless `--include-settings` is passed.
+
+## Publish This Package
+
+1. Login to npm:
+
+   npm login
+
+2. Validate package contents:
+
+   npm run pack:check
+
+3. Publish:
+
+   npm publish --access public
+
+4. For updates:
+
+   npm version patch
+   npm publish --access public

@@ -1,0 +1,42 @@
+{
+  "name": "reactiveflutter",
+  "version": "1.0.0",
+  "description": "Reusable VS Code React JSX/TSX snippets with safe bootstrap installer for macOS.",
+  "keywords": [
+    "vscode",
+    "snippets",
+    "react",
+    "jsx",
+    "tsx",
+    "dotfiles"
+  ],
+  "homepage": "https://github.com/Gracelium64/reactiveFlutter",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gracelium64/reactiveFlutter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Gracelium64/reactiveFlutter/issues"
+  },
+  "license": "MIT",
+  "author": "Gracelium64",
+  "type": "commonjs",
+  "bin": {
+    "vscode-react-snippets": "bin/vscode-react-snippets.js"
+  },
+  "files": [
+    "bin/",
+    "scripts/",
+    "vscode/",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "bootstrap": "./scripts/bootstrap-vscode.sh --mode copy",
+    "bootstrap:with-settings": "./scripts/bootstrap-vscode.sh --mode copy --include-settings",
+    "pack:check": "npm pack --dry-run"
+  }
+}
