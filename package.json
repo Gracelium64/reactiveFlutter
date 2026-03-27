@@ -35,8 +35,8 @@
     "node": ">=18"
   },
   "scripts": {
-    "bootstrap": "./scripts/bootstrap-vscode.sh --mode copy",
-    "bootstrap:with-settings": "./scripts/bootstrap-vscode.sh --mode copy --include-settings",
+    "bootstrap": "node ./scripts/bootstrap-vscode.js --mode copy",
+    "bootstrap:with-settings": "node ./scripts/bootstrap-vscode.js --mode copy --include-settings",
     "pack:check": "npm pack --dry-run"
   }
 }

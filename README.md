@@ -6,6 +6,7 @@ This repository provides a reusable, version-controlled VS Code snippet setup fo
 - Dual prefixes for each snippet (long trigger + short alias).
 - Double-quote attribute placeholders by default.
 - Broad HTML tag coverage for React work.
+- Auto-detects VS Code User directory on macOS, Linux, and Windows.
 
 ## Install As npm Package
 
@@ -39,6 +40,8 @@ npx vscode-react-snippets --mode copy --include-settings
 - `vscode/snippets/javascriptreact.json` - Global React JSX snippets.
 - `vscode/snippets/typescriptreact.json` - TSX parity snippets.
 - `scripts/bootstrap-vscode.sh` - Safe and idempotent macOS bootstrap script.
+- `scripts/bootstrap-vscode.js` - Cross-platform bootstrap script (macOS/Linux/Windows).
+- `scripts/bootstrap-vscode.sh` - Bash bootstrap script (macOS/Linux/WSL/Git Bash).
 - `bin/vscode-react-snippets.js` - npm CLI entrypoint.
 - `package.json` - npm package metadata and commands.
 
@@ -47,11 +50,11 @@ npx vscode-react-snippets --mode copy --include-settings
 1. Clone this repo on your machine.
 2. From repo root, run (safe default, snippets only):
 
-   ./scripts/bootstrap-vscode.sh --mode copy
+   node ./scripts/bootstrap-vscode.js --mode copy
 
 3. Optional: apply managed VS Code settings too:
 
-   ./scripts/bootstrap-vscode.sh --mode copy --include-settings
+   node ./scripts/bootstrap-vscode.js --mode copy --include-settings
 
 Using npm script shortcuts:
 
@@ -115,11 +118,19 @@ The script is idempotent:
 
 Use custom VS Code user directory:
 
-VSCODE_USER_DIR="$HOME/Library/Application Support/Code - Insiders/User" ./scripts/bootstrap-vscode.sh --mode copy
+VSCODE_USER_DIR="$HOME/Library/Application Support/Code - Insiders/User" node ./scripts/bootstrap-vscode.js --mode copy
+
+Linux example:
+
+VSCODE_USER_DIR="$HOME/.config/Code/User" node ./scripts/bootstrap-vscode.js --mode copy
+
+Windows PowerShell example:
+
+$env:VSCODE_USER_DIR="$env:APPDATA\Code\User"; node .\scripts\bootstrap-vscode.js --mode copy
 
 Include managed settings with custom path:
 
-VSCODE_USER_DIR="$HOME/Library/Application Support/Code - Insiders/User" ./scripts/bootstrap-vscode.sh --mode copy --include-settings
+VSCODE_USER_DIR="$HOME/Library/Application Support/Code - Insiders/User" node ./scripts/bootstrap-vscode.js --mode copy --include-settings
 
 ## Quick Validation
 

@@ -5,10 +5,42 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 MODE="copy"
 DRY_RUN="false"
 INCLUDE_SETTINGS="false"
-VSCODE_USER_DIR="${VSCODE_USER_DIR:-$HOME/Library/Application Support/Code/User}"
 BACKUP_ROOT="${BACKUP_ROOT:-$HOME/.vscode-dotfiles-backups}"
 TIMESTAMP="$(date +%Y%m%d-%H%M%S)"
 BACKUP_DIR="$BACKUP_ROOT/$TIMESTAMP"
+
+detect_vscode_user_dir() {
+  local os
+  os="$(uname -s)"
+
+  if [[ "$os" == "Darwin" ]]; then
+    echo "$HOME/Library/Application Support/Code/User"
+    return
+  fi
+
+  if [[ "$os" == "Linux" ]]; then
+    if [[ -d "$HOME/.config/Code/User" ]]; then
+      echo "$HOME/.config/Code/User"
+      return
+    fi
+    if [[ -d "$HOME/.config/Code - Insiders/User" ]]; then
+      echo "$HOME/.config/Code - Insiders/User"
+      return
+    fi
+    if [[ -d "$HOME/.config/VSCodium/User" ]]; then
+      echo "$HOME/.config/VSCodium/User"
+      return
+    fi
+
+    echo "$HOME/.config/Code/User"
+    return
+  fi
+
+  # Fallback for unsupported platforms.
+  echo "$HOME/.config/Code/User"
+}
+
+VSCODE_USER_DIR="${VSCODE_USER_DIR:-$(detect_vscode_user_dir)}"
 
 usage() {
   cat <<'EOF'
