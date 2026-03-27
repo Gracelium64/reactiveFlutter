@@ -9,7 +9,7 @@ This repository provides a reusable, version-controlled VS Code snippet setup fo
 
 ## Repository Layout
 
-- `vscode/settings.json` - VS Code user settings overrides (snippet ranking and snippet acceptance behavior).
+- `vscode/settings.json` - Optional VS Code user settings overrides (snippet ranking and snippet acceptance behavior).
 - `vscode/snippets/javascriptreact.json` - Global React JSX snippets.
 - `vscode/snippets/typescriptreact.json` - TSX parity snippets.
 - `scripts/bootstrap-vscode.sh` - Safe and idempotent macOS bootstrap script.
@@ -17,15 +17,22 @@ This repository provides a reusable, version-controlled VS Code snippet setup fo
 ## Initial Install (macOS)
 
 1. Clone this repo on your machine.
-2. From repo root, run:
+2. From repo root, run (safe default, snippets only):
 
    ./scripts/bootstrap-vscode.sh --mode copy
 
+3. Optional: apply managed VS Code settings too:
+
+   ./scripts/bootstrap-vscode.sh --mode copy --include-settings
+
 Default destination paths:
 
-- `~/Library/Application Support/Code/User/settings.json`
 - `~/Library/Application Support/Code/User/snippets/javascriptreact.json`
 - `~/Library/Application Support/Code/User/snippets/typescriptreact.json`
+
+Optional destination when `--include-settings` is used:
+
+- `~/Library/Application Support/Code/User/settings.json`
 
 Backups are stored under:
 
@@ -37,6 +44,10 @@ Backups are stored under:
 2. Re-run bootstrap:
 
    ./scripts/bootstrap-vscode.sh --mode copy
+
+3. Include settings only when you explicitly want to replace local user settings:
+
+   ./scripts/bootstrap-vscode.sh --mode copy --include-settings
 
 The script is idempotent:
 
@@ -73,6 +84,10 @@ Use custom VS Code user directory:
 
 VSCODE_USER_DIR="$HOME/Library/Application Support/Code - Insiders/User" ./scripts/bootstrap-vscode.sh --mode copy
 
+Include managed settings with custom path:
+
+VSCODE_USER_DIR="$HOME/Library/Application Support/Code - Insiders/User" ./scripts/bootstrap-vscode.sh --mode copy --include-settings
+
 ## Quick Validation
 
 1. Open a `.jsx` or `.tsx` file.
@@ -85,3 +100,4 @@ VSCODE_USER_DIR="$HOME/Library/Application Support/Code - Insiders/User" ./scrip
 
 - Snippets target `javascriptreact` and `typescriptreact` globally via VS Code User snippet files.
 - Attributes use double quotes for placeholder defaults.
+- Bootstrap does not overwrite user settings unless `--include-settings` is passed.

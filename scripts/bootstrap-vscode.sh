@@ -4,6 +4,7 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 MODE="copy"
 DRY_RUN="false"
+INCLUDE_SETTINGS="false"
 VSCODE_USER_DIR="${VSCODE_USER_DIR:-$HOME/Library/Application Support/Code/User}"
 BACKUP_ROOT="${BACKUP_ROOT:-$HOME/.vscode-dotfiles-backups}"
 TIMESTAMP="$(date +%Y%m%d-%H%M%S)"
@@ -11,10 +12,11 @@ BACKUP_DIR="$BACKUP_ROOT/$TIMESTAMP"
 
 usage() {
   cat <<'EOF'
-Usage: scripts/bootstrap-vscode.sh [--mode copy|symlink] [--dry-run]
+Usage: scripts/bootstrap-vscode.sh [--mode copy|symlink] [--include-settings] [--dry-run]
 
 Options:
   --mode      Deployment mode. Default is copy.
+  --include-settings  Also deploy vscode/settings.json into VS Code user settings.
   --dry-run   Print actions without changing files.
   -h, --help  Show this help.
 
@@ -48,6 +50,10 @@ while [[ $# -gt 0 ]]; do
       ;;
     --dry-run)
       DRY_RUN="true"
+      shift
+      ;;
+    --include-settings)
+      INCLUDE_SETTINGS="true"
       shift
       ;;
     -h|--help)
@@ -140,6 +146,11 @@ deploy() {
 
 log "Mode: $MODE"
 log "VS Code user dir: $VSCODE_USER_DIR"
+if [[ "$INCLUDE_SETTINGS" == "true" ]]; then
+  log "Settings deployment: enabled"
+else
+  log "Settings deployment: disabled (use --include-settings to enable)"
+fi
 
 ensure_dir "$VSCODE_USER_DIR"
 ensure_dir "$DEST_SNIPPETS_DIR"
@@ -148,7 +159,11 @@ if [[ "$DRY_RUN" == "false" ]]; then
   mkdir -p "$BACKUP_DIR"
 fi
 
-deploy "$SRC_SETTINGS" "$DEST_SETTINGS"
+if [[ "$INCLUDE_SETTINGS" == "true" ]]; then
+  deploy "$SRC_SETTINGS" "$DEST_SETTINGS"
+else
+  log "Skipping settings deployment: $DEST_SETTINGS"
+fi
 deploy "$SRC_JSX" "$DEST_JSX"
 deploy "$SRC_TSX" "$DEST_TSX"
 
