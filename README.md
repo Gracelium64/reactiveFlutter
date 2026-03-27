@@ -1,3 +1,5 @@
+### This will be a working progress project, with time more and more shortcuts will be added as i go through the learning curve of React
+
 # VS Code React JSX Dotfiles
 
 This repository provides a reusable, version-controlled VS Code snippet setup for React JSX/TSX with Flutter-like flow:
@@ -210,6 +212,5 @@ If command works in a normal terminal but not VS Code terminal, restart VS Code 
 - Snippets target `javascriptreact` and `typescriptreact` globally via VS Code User snippet files.
 - Attributes use double quotes for placeholder defaults.
 - Bootstrap does not overwrite user settings unless `--include-settings` is passed.
-
 
 Release notes (suggested one-liner): New: reactiveflutter command alias; New: built-in doctor diagnostics; Improved: postinstall and troubleshooting guidance.
