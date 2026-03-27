@@ -22,7 +22,8 @@
   "author": "Gracelium64",
   "type": "commonjs",
   "bin": {
-    "vscode-react-snippets": "bin/vscode-react-snippets.js"
+    "vscode-react-snippets": "bin/vscode-react-snippets.js",
+    "reactiveflutter": "bin/vscode-react-snippets.js"
   },
   "files": [
     "bin/",
@@ -35,8 +36,10 @@
     "node": ">=18"
   },
   "scripts": {
+    "postinstall": "node ./scripts/postinstall-message.js",
     "bootstrap": "node ./scripts/bootstrap-vscode.js --mode copy",
     "bootstrap:with-settings": "node ./scripts/bootstrap-vscode.js --mode copy --include-settings",
+    "doctor": "node ./scripts/bootstrap-vscode.js --doctor",
     "pack:check": "npm pack --dry-run"
   }
 }

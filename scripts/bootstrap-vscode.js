@@ -4,14 +4,16 @@ const fs = require("node:fs/promises");
 const fssync = require("node:fs");
 const os = require("node:os");
 const path = require("node:path");
+const { execSync } = require("node:child_process");
 
 function usage() {
-  console.log(`Usage: scripts/bootstrap-vscode.js [--mode copy|symlink] [--include-settings] [--dry-run]
+  console.log(`Usage: scripts/bootstrap-vscode.js [--mode copy|symlink] [--include-settings] [--dry-run] [--doctor]
 
 Options:
   --mode      Deployment mode. Default is copy.
   --include-settings  Also deploy vscode/settings.json into VS Code user settings.
   --dry-run   Print actions without changing files.
+  --doctor    Print environment diagnostics and exit.
   -h, --help  Show this help.
 
 Environment overrides:
@@ -24,6 +26,7 @@ function parseArgs(argv) {
     mode: "copy",
     includeSettings: false,
     dryRun: false,
+    doctor: false,
   };
 
   for (let i = 0; i < argv.length; i += 1) {
@@ -49,6 +52,11 @@ function parseArgs(argv) {
       continue;
     }
 
+    if (arg === "--doctor") {
+      out.doctor = true;
+      continue;
+    }
+
     if (arg === "-h" || arg === "--help") {
       usage();
       process.exit(0);
@@ -70,6 +78,132 @@ async function pathExists(target) {
     return true;
   } catch {
     return false;
+  }
+}
+
+function detectNpmPrefix() {
+  if (process.env.npm_config_prefix) {
+    return process.env.npm_config_prefix;
+  }
+
+  try {
+    return execSync("npm config get prefix", {
+      stdio: ["ignore", "pipe", "ignore"],
+    })
+      .toString()
+      .trim();
+  } catch {
+    return "";
+  }
+}
+
+function detectGlobalBinDir(prefix) {
+  if (!prefix) {
+    return "";
+  }
+
+  if (process.platform === "win32") {
+    return prefix;
+  }
+
+  return path.join(prefix, "bin");
+}
+
+function isPathSegmentPresent(targetDir, envPath) {
+  if (!targetDir || !envPath) {
+    return false;
+  }
+
+  const normalizedTarget = path.resolve(targetDir);
+  const parts = envPath.split(path.delimiter).map((part) => path.resolve(part));
+  return parts.includes(normalizedTarget);
+}
+
+async function checkWritablePath(targetPath) {
+  let probe = targetPath;
+
+  while (true) {
+    if (await pathExists(probe)) {
+      try {
+        await fs.access(probe, fssync.constants.W_OK);
+        return true;
+      } catch {
+        return false;
+      }
+    }
+
+    const parent = path.dirname(probe);
+    if (parent === probe) {
+      return false;
+    }
+    probe = parent;
+  }
+}
+
+async function runDoctor({ vscodeUserDir, destSnippetsDir, destJsx, destTsx }) {
+  const checks = [];
+  const npmPrefix = detectNpmPrefix();
+  const npmGlobalBin = detectGlobalBinDir(npmPrefix);
+  const envPath = process.env.PATH || "";
+
+  const pushCheck = (label, ok, detail) => {
+    checks.push({ ok, label });
+    const status = ok ? "PASS" : "FAIL";
+    log(`${status}: ${label}${detail ? ` (${detail})` : ""}`);
+  };
+
+  log("Doctor mode: collecting diagnostics");
+  log(`Detected VS Code user dir: ${vscodeUserDir}`);
+  log(`Detected snippets dir: ${destSnippetsDir}`);
+  log(`Detected npm prefix: ${npmPrefix || "(unknown)"}`);
+  if (npmGlobalBin) {
+    log(`Expected npm global bin: ${npmGlobalBin}`);
+  }
+
+  pushCheck(
+    "VS Code user directory exists",
+    await pathExists(vscodeUserDir),
+    vscodeUserDir,
+  );
+  pushCheck(
+    "VS Code user/snippets is writable",
+    await checkWritablePath(destSnippetsDir),
+    destSnippetsDir,
+  );
+  pushCheck(
+    "JSX snippet target is writable",
+    await checkWritablePath(destJsx),
+    destJsx,
+  );
+  pushCheck(
+    "TSX snippet target is writable",
+    await checkWritablePath(destTsx),
+    destTsx,
+  );
+
+  if (npmGlobalBin) {
+    pushCheck(
+      "npm global bin is in PATH",
+      isPathSegmentPresent(npmGlobalBin, envPath),
+      npmGlobalBin,
+    );
+  } else {
+    pushCheck("npm prefix is detectable", false, "run `npm config get prefix`");
+  }
+
+  const allPassed = checks.every((item) => item.ok);
+  log(`Doctor summary: ${allPassed ? "PASS" : "FAIL"}`);
+
+  if (!allPassed) {
+    log("Suggested fixes:");
+    log("- Ensure VS Code user directory exists and is user-writable.");
+    log(
+      "- If global command is not found, add npm global bin to PATH and restart VS Code.",
+    );
+    log(
+      "- Alternative: run with npx (local install) to avoid global PATH/permission issues.",
+    );
+    process.exitCode = 1;
   }
 }
 
@@ -310,6 +444,16 @@ async function main() {
 
   await ensureDir(vscodeUserDir, options.dryRun);
   await ensureDir(destSnippetsDir, options.dryRun);
+
+  if (options.doctor) {
+    await runDoctor({
+      vscodeUserDir,
+      destSnippetsDir,
+      destJsx,
+      destTsx,
+    });
+    return;
+  }
 
   if (!options.dryRun) {
     await fs.mkdir(backupDir, { recursive: true });

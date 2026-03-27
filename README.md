@@ -8,6 +8,32 @@ This repository provides a reusable, version-controlled VS Code snippet setup fo
 - Broad HTML tag coverage for React work.
 - Auto-detects VS Code User directory on macOS, Linux, and Windows.
 
+## Quickstart (Linux/macOS/Windows)
+
+1. Install package:
+
+   npm install -g reactiveflutter
+
+2. Deploy snippets to VS Code User directory:
+
+   vscode-react-snippets --mode copy
+
+   Alias (same command):
+
+   reactiveflutter --mode copy
+
+3. Verify in VS Code:
+   - Open a `.jsx` or `.tsx` file.
+   - Type `sec` or `img`, then accept snippet.
+
+If global npm install fails with `EACCES` on Linux, use one of these:
+
+- Use nvm (recommended) so global installs are user-scoped.
+- Or avoid global install entirely:
+
+  npm install reactiveflutter
+  npx vscode-react-snippets --mode copy
+
 ## Install As npm Package
 
 ### Global Install (Recommended)
@@ -20,6 +46,10 @@ This repository provides a reusable, version-controlled VS Code snippet setup fo
 
    vscode-react-snippets --mode copy
 
+   Alias (same command):
+
+   reactiveflutter --mode copy
+
 3. Optional: include managed VS Code settings:
 
    vscode-react-snippets --mode copy --include-settings
@@ -29,6 +59,10 @@ This repository provides a reusable, version-controlled VS Code snippet setup fo
 If you install locally (`npm install reactiveflutter` without `-g`), use npx to run it:
 
 npx vscode-react-snippets --mode copy
+
+Alias with same behavior:
+
+npx reactiveflutter --mode copy
 
 Or with optional settings:
 
@@ -140,27 +174,42 @@ VSCODE_USER_DIR="$HOME/Library/Application Support/Code - Insiders/User" node ./
 4. Press Tab to navigate placeholders in order.
 5. Confirm snippet suggestions are near top of completion list.
 
+## Troubleshooting
+
+If install succeeded but VS Code does not behave as if snippets are installed, run:
+
+1. Check package installation:
+
+   npm list -g reactiveflutter
+
+2. Check CLI resolution:
+
+   which vscode-react-snippets
+
+3. Check npm global prefix:
+
+   npm config get prefix
+
+4. Check shell PATH:
+
+   echo "$PATH"
+
+5. Check deployed snippet files:
+
+   ls -l ~/.config/Code/User/snippets/javascriptreact.json
+   ls -l ~/.config/Code/User/snippets/typescriptreact.json
+
+6. Run built-in diagnostics:
+
+   vscode-react-snippets --doctor
+
+If command works in a normal terminal but not VS Code terminal, restart VS Code after updating shell config (`.bashrc`, `.zshrc`, etc.).
+
 ## Notes
 
 - Snippets target `javascriptreact` and `typescriptreact` globally via VS Code User snippet files.
 - Attributes use double quotes for placeholder defaults.
 - Bootstrap does not overwrite user settings unless `--include-settings` is passed.
 
-## Publish This Package
 
-1. Login to npm:
-
-   npm login
-
-2. Validate package contents:
-
-   npm run pack:check
-
-3. Publish:
-
-   npm publish --access public
-
-4. For updates:
-
-   npm version patch
-   npm publish --access public
+Release notes (suggested one-liner): New: reactiveflutter command alias; New: built-in doctor diagnostics; Improved: postinstall and troubleshooting guidance.
