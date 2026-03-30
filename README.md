@@ -1,4 +1,4 @@
-### This will be a working progress project, with time more and more shortcuts will be added as i go through the learning curve of React
+### This will be a working progress project, with time more and more shortcuts will be added as i go through the learning curve of React`
 
 # VS Code React JSX Dotfiles
 
